@@ -1,0 +1,46 @@
+<div class="content" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+    <div fxFlex="30" fxFlex.xs="0">
+    </div>
+    <div fxFlex="40" class="container">
+      <div class="signup-container">
+        <h1>Sign Up</h1>
+        <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+          <mat-form-field class="full-width">
+            <input matInput required placeholder="Username" formControlName="username" />
+            <mat-error>Username is required</mat-error>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input matInput required placeholder="Email" formControlName="email" />
+            <mat-error>Email is required</mat-error>
+          </mat-form-field>
+          <div formGroupName="passwords">
+            <mat-form-field class="full-width">
+              <input matInput required placeholder="Password" formControlName="password" [type]="hide ? 'password' : 'text'">
+              <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              <mat-error>Password is required</mat-error>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <input matInput required placeholder="Confirm password" formControlName="confirmedPassword" [type]="hide ? 'password' : 'text'">
+              <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              <mat-error>Password confirmation is required</mat-error>
+            </mat-form-field>
+            <mat-error *ngIf="arePasswordsEqual()">Passwords not equal</mat-error>
+          </div>
+          <div class="general-error" *ngIf="errors.length">
+            <mat-error *ngFor="let error of errors">
+              {{error}}
+            </mat-error>
+          </div>
+          <div class="sign-up">
+            <button mat-raised-button color="primary">Sign Up</button>
+          </div>
+          <div class="loading-screen" *ngIf="isLoading">
+            <mat-spinner diameter="40"></mat-spinner>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div fxFlex="30" fxFlex.xs="0">
+    </div>
+  </div>
+  

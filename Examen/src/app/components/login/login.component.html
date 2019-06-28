@@ -1,0 +1,38 @@
+<div class="content" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+    <div fxFlex="30" fxFlex.xs="0">
+    </div>
+    <div fxFlex="40" class="container">
+      <div class="login-container">
+        <h1>Login</h1>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <mat-form-field class="full-width">
+            <input autotest-id="username" matInput required placeholder="Username" formControlName="username" />
+            <mat-error>Username is required</mat-error>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input autotest-id="password" matInput required placeholder="Password" formControlName="password"
+              [type]="hide ? 'password' : 'text'">
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <mat-error>Password is required</mat-error>
+          </mat-form-field>
+          <div class="general-error" *ngIf="errors.length">
+            <mat-error *ngFor="let error of errors">
+              <span autotest-id="error">{{error}}</span>
+            </mat-error>
+          </div>
+          <div class="login">
+            <button autotest-id="loginBtn" mat-raised-button class="login-btn" color="primary">
+              Login
+              <mat-spinner class="spinner" diameter="15" color="warn" *ngIf="isLoading">
+              </mat-spinner>
+            </button>
+            <a mat-button (click)="register()">Register</a>
+          </div>
+        </form>
+      </div>
+  
+    </div>
+    <div fxFlex="30" fxFlex.xs="0">
+    </div>
+  </div>
+  

@@ -1,0 +1,19 @@
+.spacer {
+    flex: 1 1 auto;
+  }
+  
+  .app-title {
+    font-size: 25px;
+    cursor: pointer;
+  }
+  
+  .user-menu {
+    display: flex;
+    align-items: center;
+  
+    .user-menu-title,
+    .user-menu-btn {
+      margin-bottom: -3px;
+    }
+  }
+  
